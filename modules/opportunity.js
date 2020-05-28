@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = req.body.text,
         // q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
-        q = "SELECT Id,Name,Status from Lead";
+        q = "SELECT Id,Name,Status from Lead LIMIT 4";
         //res.send("Hello World before the query   "+JSON.stringify(oauthObj));
     if (!limit || limit=="") limit = 5;
 
