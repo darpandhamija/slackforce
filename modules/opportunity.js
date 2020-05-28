@@ -3,22 +3,13 @@
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
 
-    OPPORTUNITY_TOKEN = process.env.SLACK_OPPORTUNITY_TOKEN;
-
 exports.execute = (req, res) => {
-
-    // if (req.body.token != OPPORTUNITY_TOKEN) {
-    //     res.send("Hello World "+req.body.user_id);
-    //     return;
-    // }
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = req.body.text,
-        // q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
-        q = "SELECT Id,Name,Status from Lead LIMIT 4";
-        //res.send("Hello World before the query   "+JSON.stringify(oauthObj));
     if (!limit || limit=="") limit = 5;
+    q = "SELECT Id, Name, Status from Lead LIMIT "+ limit;
 
     force.query(oauthObj, q)
         .then(data => {
@@ -30,16 +21,6 @@ exports.execute = (req, res) => {
                     fields.push({title: "Lead", value: opportunity.Name, short: true});
                     fields.push({title: "Status", value: opportunity.Status, short: true});
                     fields.push({title: "Id", value: opportunity.Id, short: true});
-                    // fields.push({
-                    //     title: "Amount",
-                    //     value: new Intl.NumberFormat('en-US', {
-                    //         style: 'currency',
-                    //         currency: 'USD'
-                    //     }).format(opportunity.Amount),
-                    //     short: true
-                    // });
-                    // fields.push({title: "Probability", value: opportunity.Probability + "%", short: true});
-                    // fields.push({title: "Open in Salesforce:", value: oauthObj.instance_url + "/" + opportunity.Id, short:false});
                     attachments.push({
                         color: "#FCB95B",
                         fields: fields

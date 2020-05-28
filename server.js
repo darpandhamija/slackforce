@@ -9,6 +9,7 @@ let express = require('express'),
     _case = require('./modules/case'),
     whoami = require('./modules/whoami'),
     actions = require('./modules/actions'),
+    addToCadence = require('./modules/addToCadence')
     app = express();
 
 
@@ -30,6 +31,7 @@ app.post('/login', auth.loginLink);
 app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
+app.post('/addToCadence', addToCadence.execute);
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
