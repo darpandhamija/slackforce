@@ -17,7 +17,7 @@ exports.execute = (req, res) => {
         limit = req.body.text,
         // q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
         q = "SELECT Id,Name,Status from Lead";
-        res.send("Hello World before the query"+req.body.user_id);
+        //res.send("Hello World before the query"+req.body.user_id);
     if (!limit || limit=="") limit = 5;
 
     force.query(oauthObj, q)
