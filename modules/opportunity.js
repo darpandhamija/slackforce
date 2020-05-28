@@ -7,17 +7,17 @@ let auth = require("./slack-salesforce-auth"),
 
 exports.execute = (req, res) => {
 
-    if (req.body.token != OPPORTUNITY_TOKEN) {
-        res.send("Hello World "+req.body.user_id);
-        return;
-    }
+    // if (req.body.token != OPPORTUNITY_TOKEN) {
+    //     res.send("Hello World "+req.body.user_id);
+    //     return;
+    // }
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = req.body.text,
         // q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity where isClosed=false ORDER BY amount DESC LIMIT " + limit;
         q = "SELECT Id,Name,Status from Lead";
-
+        res.send("Hello World before the query"+req.body.user_id);
     if (!limit || limit=="") limit = 5;
 
     force.query(oauthObj, q)
@@ -55,7 +55,7 @@ exports.execute = (req, res) => {
         })
         .catch(error => {
             if (error.code == 401) {
-                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId);
+                res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId+'   '+JSON.parse(error));
             } else {
                 console.log(error);
                 res.send("An error as occurred");
