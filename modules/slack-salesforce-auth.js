@@ -40,6 +40,7 @@ exports.oauthLogin = (req, res) => {
 exports.oauthCallback = (req, res) => {
 
     var slackUserId = req.query.state;
+    console.log('in oauthCallback with user Id '+ slackUserId);
 
     let options = {
         url: `${SF_LOGIN_URL}/services/oauth2/token`,
@@ -57,6 +58,7 @@ exports.oauthCallback = (req, res) => {
             console.log(error);
             return res.send("error");
         }
+        console.log('in otpions call  with body '+ body);
         mappings[slackUserId] = JSON.parse(body);
         let html = `
             <html>
