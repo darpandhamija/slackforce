@@ -7,10 +7,10 @@ let auth = require("./slack-salesforce-auth"),
 
 exports.execute = (req, res) => {
 
-    // if (req.body.token != OPPORTUNITY_TOKEN) {
-    //     res.send("Hello World");
-    //     return;
-    // }
+    if (req.body.token != OPPORTUNITY_TOKEN) {
+        res.send("Hello World "+req.body.user_id);
+        return;
+    }
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
