@@ -41,6 +41,11 @@ exports.oauthCallback = (req, res) => {
 
     var slackUserId = req.query.state;
     console.log('in oauthCallback with user Id '+ slackUserId);
+    console.log('code '+ req.query.code);
+    console.log('SF_CLIENT_ID '+ SF_CLIENT_ID);
+    console.log('SF_CLIENT_SECRET'+ SF_CLIENT_SECRET);
+    console.log('req.hostname'+ req.hostname);
+
 
     let options = {
         url: `${SF_LOGIN_URL}/services/oauth2/token`,
@@ -52,6 +57,7 @@ exports.oauthCallback = (req, res) => {
             redirect_uri: `https://${req.hostname}/oauthcallback`
         }
     };
+    console.log('options : '+ JSON.stringify(options));
 
     request.post(options, function (error, response, body) {
         if (error) {
