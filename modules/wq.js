@@ -12,7 +12,7 @@ exports.execute = (req, res) => {
     console.log("userId : "+userId);
     if (!limit || limit=="") limit = 5;
     let q = "SELECT  Id, ActionCadenceStepId,Target.Name TargetId, State, StepType, ActionCadenceName, ActionCadenceStep.TemplateId, StepTitle, ActionCadenceId, DueDateTime FROM  ActionCadenceStepTracker WHERE   ActionCadenceTracker.OwnerId = '"+userId+"' AND ActionCadenceTracker.State = 'Running' AND (State = 'Active' or State = 'Error') AND StepType in ('MakeACall', 'CreateTask', 'SendAnEmail', 'AutoSendAnEmail')   AND TargetId != null ORDER BY  ActionCadenceName ASC, ActionCadenceStepId ASC LIMIT "+ limit;
-
+    console.log(q);
     force.query(oauthObj, q)
         .then(data => {
             let opportunities = JSON.parse(data).records;
