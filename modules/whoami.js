@@ -12,6 +12,8 @@ exports.execute = (req, res) => {
     force.whoami(oauthObj)
         .then(data => {
             let userInfo = JSON.parse(data);
+            console.log("UserInfoData "+JSON.stringify(data));
+            console.log("UserInfo "+JSON.stringify(userInfo));
             let attachments = [];
             let fields = [];
             fields.push({title: "Name", value: userInfo.name, short:true});
