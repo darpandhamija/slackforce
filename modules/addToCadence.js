@@ -2,6 +2,7 @@
 
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
+    whoami = require("./whoami"),
     API_VERSION = 'v49.0';
 
 exports.execute = (req, res) => {
@@ -12,6 +13,8 @@ exports.execute = (req, res) => {
         targetId = params[0],
         cadenceId = params[1],
         userId = params[2];
+
+    if (!userId || userId=="") userId = global.global_user_id;
     console.log("Body : "+req.body.text);
     console.log("TargetId : "+targetId);
     console.log("Cadence Id : "+cadenceId);

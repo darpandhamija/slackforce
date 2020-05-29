@@ -31,7 +31,7 @@ exports.execute = (req, res) => {
                     fields.push({title: "State", value: opportunity.State, short: true});
                     fields.push({title: "Id", value: opportunity.Id, short: true});
                     attachments.push({
-                        color: "#F0B95B",
+                        color: "#ADF802",
                         fields: fields
                     });
                 });
