@@ -12,7 +12,7 @@ exports.execute = (req, res) => {
     let userId = req.body.text;
     console.log("userId : "+userId);
     if (!limit || limit=="") limit = 5;
-    if (!userId || userId=="") userId = whoami.global_user_id;
+    if (!userId || userId=="") userId = whoami.getGlobalUserId();
     console.log("global userId : "+userId);
     let q = "SELECT  Id, ActionCadenceStepId,Target.Name, TargetId, State, StepType, ActionCadenceName, ActionCadenceStep.TemplateId, StepTitle, ActionCadenceId, DueDateTime FROM  ActionCadenceStepTracker WHERE   ActionCadenceTracker.OwnerId = '"+userId+"' AND ActionCadenceTracker.State = 'Running' AND (State = 'Active' or State = 'Error') AND StepType in ('MakeACall', 'CreateTask', 'SendAnEmail', 'AutoSendAnEmail')   AND TargetId != null ORDER BY  ActionCadenceName ASC, ActionCadenceStepId ASC LIMIT "+ limit;
     console.log(q);

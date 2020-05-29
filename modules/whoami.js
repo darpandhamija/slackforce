@@ -32,3 +32,5 @@ exports.execute = (req, res) => {
             }
         });
 };
+
+exports.getGlobalUserId = global_user_id;
