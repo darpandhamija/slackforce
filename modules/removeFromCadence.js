@@ -9,26 +9,21 @@ exports.execute = (req, res) => {
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
         params = req.body.text.split(":"),
-        targetId = params[0],
-        cadenceId = params[1],
-        userId = params[2];
+        targetId = params[0];
     console.log("Body : "+req.body.text);
     console.log("TargetId : "+targetId);
-    console.log("Cadence Id : "+cadenceId);
-    console.log("User Id : "+userId);
 
     let fields = {};
     let inputs = [];
     let input = {};
-    input["salesCadenceNameOrId"] = cadenceId;
     input["targetId"] = targetId;
-    input["userId"] = userId;
+    input["completionReasonCode"] = "ManuallyRemoved";
     inputs.push(input);
     fields["inputs"] = inputs;
 
     console.log("Payload : "+JSON.stringify(fields));
 
-    force.executeRequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
+    force.executeRequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/removeTargetFromSalesCadence', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -38,10 +33,10 @@ exports.execute = (req, res) => {
         }
     ).then(data => {
         let fields = [];
-            fields.push({title: "Action", value: "Assign Target to Sales Cadence", short:true});
+            fields.push({title: "Action", value: "Remove Target from Sales Cadence", short:true});
             fields.push({title: "Result", value: "Success", short:true});
             attachments.push({color: "#65CAE4", fields: fields});
-            res.json({text: "Assign Target to Sales Cadence result : ", attachments: attachments});
+            res.json({text: "Remove Target from Sales Cadence result : ", attachments: attachments});
     }).catch(error => {
         if (error.code == 401) {
             res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId+'   '+JSON.stringify(error));

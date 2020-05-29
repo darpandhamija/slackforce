@@ -10,6 +10,9 @@ let express = require('express'),
     whoami = require('./modules/whoami'),
     actions = require('./modules/actions'),
     addToCadence = require('./modules/addToCadence'),
+    removeFromCadence = require('./modules/removeFromCadence'),
+    cadences = require('./modules/actionCadence'),
+    wq = require('./modules/wq'),
     app = express();
 
 
@@ -22,7 +25,7 @@ app.use('/', express.static(__dirname + '/www')); // serving company logos after
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/actions', actions.handle);
-app.post('/pipeline', opportunity.execute);
+app.post('/targets', opportunity.execute);
 app.post('/contact', contact.execute);
 app.post('/account', account.execute);
 app.post('/case', _case.execute);
@@ -32,6 +35,9 @@ app.post('/logout', auth.logout);
 app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
 app.post('/addToCadence', addToCadence.execute);
+app.post('/removeFromCadence', removeFromCadence.execute);
+app.post('/cadences', actionCadence.execute);
+app.post('/wq', wq.execute);
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
