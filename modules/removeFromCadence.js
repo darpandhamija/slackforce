@@ -36,7 +36,7 @@ exports.execute = (req, res) => {
         let fields = [];
             fields.push({title: "Action", value: "Remove Target from Sales Cadence", short:true});
             fields.push({title: "Result", value: "Success", short:true});
-            attachments.push({color: "#65CAE4", fields: fields});
+            attachments.push({color: "#800000", fields: fields});
             res.json({text: "Remove Target from Sales Cadence result : ", attachments: attachments});
     }).catch(error => {
         if (error.code == 401) {

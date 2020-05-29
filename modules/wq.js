@@ -29,7 +29,7 @@ exports.execute = (req, res) => {
                     fields.push({title: "Step Type", value: opportunity.StepType, short: true});
                     fields.push({title: "Due Date", value: opportunity.DueDateTime, short: true});
                     attachments.push({
-                        color: "#FCBD5B",
+                        color: "#1798C1",
                         fields: fields
                     });
                 });
