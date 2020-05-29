@@ -165,7 +165,7 @@ let chatter = (oauth, path, params) => {
  * Call as is
  */
 
-let executeRequest = (oath, path, options) => sfrequest(oauth,path,options); 
+let executeRequest = (oauth, path, options) => sfrequest(oauth,path,options); 
 
 /**
  * Convenience function to retrieve user information
