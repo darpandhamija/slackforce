@@ -9,11 +9,14 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = "";
     let param = req.body.text;
+    
     if (!limit || limit=="") limit = 5;
+    let headerText = "Top " + limit + " Sales Cadences."
     let q = "SELECT Name, FolderName, State, Id FROM ActionCadence LIMIT "+ limit;
     
     if(param || param!=""){
         q = "SELECT Name, FolderName, State, Id FROM ActionCadence WHERE Name LIKE '%" + req.body.text + "%' LIMIT "+ limit;
+        headerText = "Cadences filtered : "+req.body.text;
     }
 
     force.query(oauthObj, q)
@@ -33,7 +36,7 @@ exports.execute = (req, res) => {
                     });
                 });
                 res.json({
-                    text: "Top " + limit + " Sales Cadences.",
+                    text: headerText,
                     attachments: attachments
                 });
             } else {
