@@ -165,7 +165,7 @@ let chatter = (oauth, path, params) => {
  * Call as is
  */
 
-let execute = (oath, path, options) => sfrequest(oauth,path,options); 
+let executeRequest = (oath, path, options) => sfrequest(oauth,path,options); 
 
 /**
  * Convenience function to retrieve user information
@@ -183,3 +183,4 @@ exports.upsert = upsert;
 exports.apexrest = apexrest;
 exports.chatter = chatter;
 exports.whoami = whoami;
+exports.executeRequest = executeRequest;

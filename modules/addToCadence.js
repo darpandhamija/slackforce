@@ -28,7 +28,7 @@ exports.execute = (req, res) => {
 
     console.log("Payload : "+JSON.stringify(fields));
 
-    force.request(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
+    force.executeRequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -36,7 +36,9 @@ exports.execute = (req, res) => {
             json: true,
             body: fields
         }
-    ).catch(error => {
+    ).then(data => {
+        res.send("Target added to Cadence. "+ JSON.stringify(data));
+    }).catch(error => {
         if (error.code == 401) {
             res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId+'   '+JSON.stringify(error));
         } else {
@@ -44,5 +46,5 @@ exports.execute = (req, res) => {
             res.send("An error as occurred");
         }
     });
-    res.send("Target added to Cadence.");
+    
 };
