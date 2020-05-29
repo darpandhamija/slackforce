@@ -37,7 +37,7 @@ exports.execute = (req, res) => {
             body: fields
         }
     ).then(data => {
-        res.send("Target added to Cadence. "+ JSON.stringify(data));
+        res.json('{"type": "section","text": {"type": "mrkdwn","text":" :star: Target Successfully added to Cadence. :star: }"');
     }).catch(error => {
         if (error.code == 401) {
             res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId+'   '+JSON.stringify(error));
