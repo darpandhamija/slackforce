@@ -9,7 +9,7 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = req.body.text;
     if (!limit || limit=="") limit = 5;
-    q = "SELECT Id, Name, Status from Lead LIMIT "+ limit;
+    let q = "SELECT Id, Name, Status from Lead LIMIT "+ limit;
 
     force.query(oauthObj, q)
         .then(data => {

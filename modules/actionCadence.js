@@ -9,7 +9,7 @@ exports.execute = (req, res) => {
         oauthObj = auth.getOAuthObject(slackUserId),
         limit = req.body.text;
     if (!limit || limit=="") limit = 5;
-    q = "SELECT Name, FolderName, State, Id FROM ActionCadence LIMIT "+ limit;
+    let q = "SELECT Name, FolderName, State, Id FROM ActionCadence LIMIT "+ limit;
 
     force.query(oauthObj, q)
         .then(data => {
