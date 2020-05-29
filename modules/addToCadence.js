@@ -32,7 +32,7 @@ exports.execute = (req, res) => {
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            qs: {'_HttpMethod': 'PATCH'},
+            qs: {'_HttpMethod': 'POST'},
             json: true,
             body: fields
         }
