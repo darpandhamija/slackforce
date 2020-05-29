@@ -9,7 +9,7 @@ let express = require('express'),
     _case = require('./modules/case'),
     whoami = require('./modules/whoami'),
     actions = require('./modules/actions'),
-    addToCadence = require('./modules/addToCadence')
+    addToCadence = require('./modules/addToCadence'),
     app = express();
 
 
