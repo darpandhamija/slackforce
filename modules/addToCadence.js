@@ -2,7 +2,6 @@
 
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
-    CASE_TOKEN = process.env.SLACK_CASE_TOKEN;
 
 exports.execute = (req, res) => {
 
@@ -15,7 +14,7 @@ exports.execute = (req, res) => {
 
     let fields = [];
     let inputs = [];
-    let input = {}
+    let input = {};
     input["salesCadenceNameOrId"] = cadenceId;
     input["targetId"] = targetId;
     input["userId"] = userId;
@@ -31,5 +30,5 @@ exports.execute = (req, res) => {
             body: fields
         }
     );
-    res.send("Target added to Cadence.")
+    res.send("Target added to Cadence.");
 };
