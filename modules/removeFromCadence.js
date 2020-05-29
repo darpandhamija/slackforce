@@ -32,6 +32,7 @@ exports.execute = (req, res) => {
             body: fields
         }
     ).then(data => {
+        let attachments = [];
         let fields = [];
             fields.push({title: "Action", value: "Remove Target from Sales Cadence", short:true});
             fields.push({title: "Result", value: "Success", short:true});
