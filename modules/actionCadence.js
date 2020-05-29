@@ -7,9 +7,14 @@ exports.execute = (req, res) => {
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
-        limit = req.body.text;
+        limit = "";
+    let param = req.body.text;
     if (!limit || limit=="") limit = 5;
     let q = "SELECT Name, FolderName, State, Id FROM ActionCadence LIMIT "+ limit;
+    
+    if(param || param!=""){
+        q = "SELECT Name, FolderName, State, Id FROM ActionCadence LIKE '%" + req.body.text + "%' LIMIT "+ limit;
+    }
 
     force.query(oauthObj, q)
         .then(data => {
