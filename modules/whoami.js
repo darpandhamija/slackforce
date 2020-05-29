@@ -21,7 +21,7 @@ exports.execute = (req, res) => {
             fields.push({title: "Name", value: userInfo.name, short:true});
             fields.push({title: "Salesforce User Name", value: userInfo.preferred_username, short:true});
             
-            global.global_user_id : userInfo.user_id;
+            global.global_user_id = userInfo.user_id;
             
             fields.push({title: "Salesforce User Id", value: userInfo.user_id, short:false});
             
