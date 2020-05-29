@@ -11,6 +11,10 @@ exports.execute = (req, res) => {
         targetId = params[0],
         cadenceId = params[1],
         userId = params[2];
+    console.log("Body : "+req.body.text);
+    console.log("TargetId : "+targetId);
+    console.log("Cadence Id : "+cadenceId);
+    console.log("User Id : "+userId);
 
     let fields = [];
     let inputs = [];
@@ -20,6 +24,8 @@ exports.execute = (req, res) => {
     input["userId"] = userId;
     inputs.push(input);
     fields["inputs"] = inputs;
+
+    console.log("Payload : "JSON.stringify(fields));
 
     force.sfrequest(oauth, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
         {
