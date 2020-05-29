@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
     
     if(param || param!=""){
         q = "SELECT Name, FolderName, State, Id FROM ActionCadence WHERE Name LIKE '%" + req.body.text + "%' LIMIT "+ limit;
-        headerText = "Cadences filtered : "+req.body.text;
+        headerText = "Cadences filtered by : "+req.body.text;
     }
 
     force.query(oauthObj, q)

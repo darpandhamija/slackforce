@@ -7,9 +7,16 @@ exports.execute = (req, res) => {
 
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
-        limit = req.body.text;
+        limit = "";
+    let param = req.body.text;
+
     if (!limit || limit=="") limit = 5;
     let q = "SELECT Id, Name, Status from Lead LIMIT "+ limit;
+    let headerText = "Top " + limit + " Targets."
+    if(param || param!=""){
+        q = "SELECT Id, Name, Status FROM Lead WHERE Name LIKE '%" + req.body.text + "%' LIMIT "+ limit;
+        headerText = "Targets filtered by : "+req.body.text;
+    }
 
     force.query(oauthObj, q)
         .then(data => {
@@ -27,7 +34,7 @@ exports.execute = (req, res) => {
                     });
                 });
                 res.json({
-                    text: "Top " + limit + " Leads.",
+                    text: headerText,
                     attachments: attachments
                 });
             } else {
