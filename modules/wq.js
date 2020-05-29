@@ -21,7 +21,7 @@ exports.execute = (req, res) => {
                 opportunities.forEach(function (opportunity) {
                     let fields = [];
                     fields.push({title: "Sales Cadence Name", value: opportunity.ActionCadenceName, short: true});
-                    fields.push({title: "Step Title", value: opportunity.StepTitle, short: true});
+                    fields.push({title: "Step Name", value: opportunity.StepTitle, short: true});
                     fields.push({title: "Target Name", value: opportunity.Target.Name, short: true});
                     fields.push({title: "Step Type", value: opportunity.StepType, short: true});
                     fields.push({title: "Due Date", value: opportunity.DueDateTime, short: true});

@@ -6,11 +6,6 @@ let auth = require("./slack-salesforce-auth"),
 
 exports.execute = (req, res) => {
 
-    if (req.body.token != CONTACT_TOKEN) {
-        res.send("Invalid token");
-        return;
-    }
-
     let slackUserId = req.body.user_id,
         oauthObj = auth.getOAuthObject(slackUserId),
         q = "SELECT Id, Name, Phone, MobilePhone, Email FROM Contact WHERE Name LIKE '%" + req.body.text + "%' LIMIT 5";
