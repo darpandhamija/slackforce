@@ -1,5 +1,5 @@
 "use strict";
-var global_user_id = "";
+let global_user_id = "";
 
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
