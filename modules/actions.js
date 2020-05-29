@@ -2,6 +2,7 @@
 
 exports.handle = (req, res) => {
     console.log(req.body);
+    let attachments = [];
     let fields = [];
    	fields.push({title: "/whoami", value: "User Info", short: true});
     fields.push({title: "/cadences", value: "List of Sales Cadences", short: true});
