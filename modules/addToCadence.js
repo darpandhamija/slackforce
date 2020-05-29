@@ -25,7 +25,7 @@ exports.execute = (req, res) => {
     inputs.push(input);
     fields["inputs"] = inputs;
 
-    console.log("Payload : "JSON.stringify(fields));
+    console.log("Payload : "+JSON.stringify(fields));
 
     force.sfrequest(oauth, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
         {
