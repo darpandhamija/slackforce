@@ -36,7 +36,7 @@ app.get('/login/:slackUserId', auth.oauthLogin);
 app.get('/oauthcallback', auth.oauthCallback);
 app.post('/addToCadence', addToCadence.execute);
 app.post('/removeFromCadence', removeFromCadence.execute);
-app.post('/cadences', actionCadence.execute);
+app.post('/cadences', cadences.execute);
 app.post('/wq', wq.execute);
 
 app.listen(app.get('port'), function () {
