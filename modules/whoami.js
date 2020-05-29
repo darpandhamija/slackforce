@@ -1,5 +1,6 @@
 "use strict";
-let global_user_id = "";
+
+global.global_user_id = "";
 
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
@@ -19,8 +20,11 @@ exports.execute = (req, res) => {
             let fields = [];
             fields.push({title: "Name", value: userInfo.name, short:true});
             fields.push({title: "Salesforce User Name", value: userInfo.preferred_username, short:true});
+            
+            global.global_user_id : userInfo.user_id;
+            
             fields.push({title: "Salesforce User Id", value: userInfo.user_id, short:false});
-            global_user_id = userInfo.user_id;
+            
             attachments.push({color: "#65CAE4", fields: fields});
             res.json({text: "Your User Information:", attachments: attachments});
         })
