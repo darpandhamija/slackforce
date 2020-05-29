@@ -1,7 +1,7 @@
 "use strict";
 
 let auth = require("./slack-salesforce-auth"),
-    force = require("./force"),
+    force = require("./force");
 
 exports.execute = (req, res) => {
 
