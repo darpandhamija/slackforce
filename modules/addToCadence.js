@@ -28,7 +28,7 @@ exports.execute = (req, res) => {
 
     console.log("Payload : "+JSON.stringify(fields));
 
-    force.sfrequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
+    force.executeRequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},

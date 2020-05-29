@@ -162,6 +162,12 @@ let chatter = (oauth, path, params) => {
 };
 
 /**
+ * Call as is
+ */
+
+let execute = (oath, path, options) => sfrequest(oauth,path,options); 
+
+/**
  * Convenience function to retrieve user information
  */
 let whoami = oauth => sfrequest(oauth, "/services/oauth2/userinfo");
