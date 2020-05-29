@@ -16,7 +16,7 @@ exports.execute = (req, res) => {
     console.log("Cadence Id : "+cadenceId);
     console.log("User Id : "+userId);
 
-    let fields = [];
+    let fields = {};
     let inputs = [];
     let input = {};
     input["salesCadenceNameOrId"] = cadenceId;
@@ -27,7 +27,7 @@ exports.execute = (req, res) => {
 
     console.log("Payload : "+JSON.stringify(fields));
 
-    force.sfrequest(oauth, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
+    force.sfrequest(oauthObj, '/services/data/' + API_VERSION + '/actions/standard/assignTargetToSalesCadence', 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -35,6 +35,13 @@ exports.execute = (req, res) => {
             json: true,
             body: fields
         }
-    );
+    ).catch(error => {
+        if (error.code == 401) {
+            res.send(`Visit this URL to login to Salesforce: https://${req.hostname}/login/` + slackUserId+'   '+JSON.stringify(error));
+        } else {
+            console.log(error);
+            res.send("An error as occurred");
+        }
+    });
     res.send("Target added to Cadence.");
 };
