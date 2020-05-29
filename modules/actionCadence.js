@@ -18,9 +18,9 @@ exports.execute = (req, res) => {
                 let attachments = [];
                 opportunities.forEach(function (opportunity) {
                     let fields = [];
-                    fields.push({title: "Lead", value: opportunity.Name, short: true});
-                    fields.push({title: "Lead", value: opportunity.FolderName, short: true});
-                    fields.push({title: "Status", value: opportunity.State, short: true});
+                    fields.push({title: "Cadence Name", value: opportunity.Name, short: true});
+                    fields.push({title: "Folder Name ", value: opportunity.FolderName, short: true});
+                    fields.push({title: "State", value: opportunity.State, short: true});
                     fields.push({title: "Id", value: opportunity.Id, short: true});
                     attachments.push({
                         color: "#FCB95B",
